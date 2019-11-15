@@ -42,7 +42,9 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 // ﾉ靹ﾃ
 //const unsigned int SCR_WIDTH = 1280;
 //const unsigned int SCR_HEIGHT = 720;
-const unsigned int SCR_WIDTH = 500;
+//const unsigned int SCR_WIDTH = 500;
+//const unsigned int SCR_HEIGHT = 500;
+const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 500;
 
 float factor = 0.2f;
@@ -298,9 +300,7 @@ int main() {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-		CvSize size = cvSize(500, 500);
-		cv::Mat projImgGray(500, 500, CV_8UC1);
-		cv::Mat projImgGrayop(500, 500, CV_8UC1);
+
 		//cv::Mat img(300, 400, CV_8UC3);
 		//glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
 		//cv::imshow("img", img);
@@ -308,11 +308,6 @@ int main() {
 		//glGetIntegerv(GL_VIEWPORT, viewPort); // 10000~11000 us
 
 		//GLubyte* buffer = (GLubyte*)malloc(viewPort[2] * viewPort[3] * sizeof(GLubyte) * 3);
-		QueryPerformanceFrequency(&nFreq);
-		QueryPerformanceCounter(&nBeginTime);
-
-		glReadPixels(0, 0, 500, 500, GL_BGR, GL_UNSIGNED_BYTE, model2DImg.data); // 3000us
-
 		//cv::imshow("cvtest1", model2DImg);
 
 		//void *buffer = glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
@@ -331,21 +326,30 @@ int main() {
 		//glReadPixels(0, 0, 500, 500, GL_BGR, GL_UNSIGNED_BYTE, 0);
 		//void *ptr = glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
 		//memcpy(model2DImg.data, ptr, 500 * 500 * 3);
-		
 
-		cv::cvtColor(model2DImg, projImgGray, CV_BGR2GRAY);
-		cv::flip(projImgGray, projImgGrayop, 0);
-		//delete[] buffer;
-		cv::imshow("cvtest", projImgGrayop);
+		//QueryPerformanceFrequency(&nFreq);
+		//QueryPerformanceCounter(&nBeginTime);
+
+		//CvSize size = cvSize(500, 500);
+		//cv::Mat projImgGray(500, 500, CV_8UC1);
+		//cv::Mat projImgGrayop(500, 500, CV_8UC1);
+
+		//glReadPixels(0, 0, 500, 500, GL_BGR, GL_UNSIGNED_BYTE, model2DImg.data);
+		//cv::cvtColor(model2DImg, projImgGray, CV_BGR2GRAY);
+		//cv::flip(projImgGray, projImgGrayop, 0);
+		//cv::imshow("cvtest", projImgGrayop);
+
+		//QueryPerformanceCounter(&nEndTime);
+		//time1 = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
+		//printf("Latency : %f us \n", time1 * 1000000);
+
 		//cv::Mat testcv(300, 400, CV_8UC3);
 		//void *ptr = glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
 		////void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY);
 		//std::memcpy(testcv.data, ptr, 400 * 300);
 		//cv::imshow("img", testcv);
 
-		QueryPerformanceCounter(&nEndTime);
-		time1 = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
-		printf("Latency : %f us \n", time1 * 1000000);
+
 
 	}
 
