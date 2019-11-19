@@ -18,12 +18,12 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/videoio.hpp"
-#include <dlib/image_processing/frontal_face_detector.h>
-#include <dlib/image_processing/render_face_detections.h>
-#include <dlib/image_processing.h>
-#include <dlib/gui_widgets.h>
-#include <dlib/image_io.h>
-#include <dlib/opencv.h>
+//#include <dlib/image_processing/frontal_face_detector.h>
+//#include <dlib/image_processing/render_face_detections.h>
+//#include <dlib/image_processing.h>
+//#include <dlib/gui_widgets.h>
+//#include <dlib/image_io.h>
+//#include <dlib/opencv.h>
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include<math.h>
@@ -55,12 +55,12 @@ double fov = 45.0;
 	LARGE_INTEGER nEndTime;
 	double time1;
 float vertices[] = {
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-	0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 0.0f,
+	0.5f, -0.5f, -20.0f, 1.0f, 0.0f,
+	0.5f, 0.5f, -20.0f, 1.0f, 1.0f,
+	0.5f, 0.5f, -20.0f, 1.0f, 1.0f,
+	-0.5f, 0.5f, -20.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 0.0f,
 
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 	0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
@@ -70,32 +70,32 @@ float vertices[] = {
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
 	-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-	-0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f, 0.5f, -20.0f, 1.0f, 1.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 	-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
 	0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-	0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	0.5f, 0.5f, -20.0f, 1.0f, 1.0f,
+	0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
+	0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
 	0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 	0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
+	0.5f, -0.5f, -20.0f, 1.0f, 1.0f,
 	0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
 	0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -20.0f, 0.0f, 1.0f,
 
-	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+	-0.5f, 0.5f, -20.0f, 0.0f, 1.0f,
+	0.5f, 0.5f, -20.0f, 1.0f, 1.0f,
 	0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 	0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 	-0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
-	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f
+	-0.5f, 0.5f, -20.0f, 0.0f, 1.0f
 };
 
 glm::vec3 cubePositions[] = {//(右左，上下，前后)+-
@@ -190,7 +190,7 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* data = stbi_load(/*"zhou_yu.bmp"*/"123.png", &width, &height, &nrChannels, 0);
+	unsigned char* data = stbi_load(/*"zhou_yu.bmp"*/"1212.jpg", &width, &height, &nrChannels, 0);
 	if (data) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);

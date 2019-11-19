@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/glad.h>	//ÒªÓÃµ½OpenGLµÄº¯Êı¾ÍÒª°üº¬Õâ¸öÍ·ÎÄ¼ş
+#include <glad/glad.h>	//ÒªÓÃµ½OpenGLµÄº¯Êı¾ÍÒª°E¬Õâ¸öÍ·ÎÄ¼ş
 
 #include <string>
 #include <iostream>
@@ -14,7 +14,7 @@ public:
 	unsigned int ID;
 
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
-	//Ê¹ÓÃ×ÅÉ«Æ÷
+	//Ê¹ÓÃ×ÅÉ«ÆE
 	void use();
 	//ÉèÖÃuniform±äÁ¿
 	void setBool(const std::string& name, bool value) const;

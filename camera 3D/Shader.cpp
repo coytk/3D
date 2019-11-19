@@ -1,12 +1,12 @@
 #include "Shader.h"
 
 Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath) {
-	//£¡1¡¢¶ÁÈ¡×ÅÉ«Æ÷µÄ´úÂë
+	//£¡1¡¢¶ÁÈ¡×ÅÉ«Æ÷µÄ´úÂE
 	std::string vertexCode;
 	std::string fragmentCode;
 	std::ifstream vShaderFile;
 	std::ifstream fShaderFile;
-	//È·±£ÎÄ¼şÁ÷»áÊä³öÒì³£
+	//È·±£ÎÄ¼şÁ÷»áÊä³öÒE£
 	vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
@@ -26,37 +26,37 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath) {
 		fragmentCode = fShaderStream.str();
 	}
 	catch (std::ifstream::failure e) {
-		std::cout << "´íÎó£º¶ÁÈ¡ÎÄ¼şÊ§°Ü£¬Çë¼ì²éÎÄ¼şÊÇ·ñ´æÔÚ£¡" << std::endl;
+		std::cout << "´úêó£º¶ÁÈ¡ÎÄ¼şÊ§°Ü£¬ÇEEéÎÄ¼şÊÇ·ñ´æÔÚ£¡" << std::endl;
 	}
 
-	//£¡2¡¢±àÒë×ÅÉ«Æ÷
+	//£¡2¡¢±àÒEÅÉ«ÆE
 	const char* vShaderCode = vertexCode.c_str();
 	const char* fShaderCode = fragmentCode.c_str();
 	unsigned int vertex, fragment;
 	int success;
 	char infoLog[512];
 
-	//¶¥µã×ÅÉ«Æ÷
+	//¶¥µã×ÅÉ«ÆE
 	vertex = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertex, 1, &vShaderCode, NULL);
 	glCompileShader(vertex);
 	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		std::cout << "±àÒë¶¥µã×ÅÉ«Æ÷Ê§°Ü£¬´íÎóĞÅÏ¢£º" << infoLog << std::endl;
+		std::cout << "±àÒE¥µã×ÅÉ«Æ÷Ê§°Ü£¬´úêóĞÅÏ¢£º" << infoLog << std::endl;
 	}
 
-	//Æ¬Ôª×ÅÉ«Æ÷
+	//Æ¬Ôª×ÅÉ«ÆE
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fShaderCode, NULL);
 	glCompileShader(fragment);
 	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		std::cout << "±àÒëÆ¬Ôª×ÅÉ«Æ÷Ê§°Ü£¬´íÎóĞÅÏ¢£º" << infoLog << std::endl;
+		std::cout << "±àÒE¬Ôª×ÅÉ«Æ÷Ê§°Ü£¬´úêóĞÅÏ¢£º" << infoLog << std::endl;
 	}
 
-	//×ÅÉ«Æ÷³ÌĞò
+	//×ÅÉ«Æ÷³ÌĞE
 	ID = glCreateProgram();
 	glAttachShader(ID, vertex);
 	glAttachShader(ID, fragment);
@@ -64,15 +64,15 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath) {
 	glGetProgramiv(ID, GL_LINK_STATUS, &success);
 	if (!success) {
 		glGetProgramInfoLog(ID, 512, NULL, infoLog);
-		std::cout << "Á¬½Ó×ÅÉ«Æ÷³ÌĞòÊ§°Ü£¬´íÎóĞÅÏ¢£º" << infoLog << std::endl;
+		std::cout << "Á¬½Ó×ÅÉ«Æ÷³ÌĞòÊ§°Ü£¬´úêóĞÅÏ¢£º" << infoLog << std::endl;
 	}
 
-	//É¾³ı×ÅÉ«Æ÷³ÌĞò
+	//É¾³ı×ÅÉ«Æ÷³ÌĞE
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
 }
 
-///Ê¹ÓÃ×ÅÉ«Æ÷
+///Ê¹ÓÃ×ÅÉ«ÆE
 void Shader::use() {
 	glUseProgram(ID);
 }
